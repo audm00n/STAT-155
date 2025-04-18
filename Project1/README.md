@@ -1,7 +1,7 @@
 ## Dataset Overview
 
-- **Observations:** 10001 
-- **Variables:** 10
+- **Observations:** 452
+- **Variables:** 22
 
 ### Data Dictionary (Selected Variables)
 - `Name`: Name of the pizza place 
@@ -11,6 +11,6 @@
 - `Province`: Province of location  
 - `Lattitude`: Latitude coordinates
 - `Longitude`: Longitude coordinates
-- `Categories`: Type of restaurant  
-- `Price_range_min`: Minimum price on menu
-- `Price_range_max`: Maximum price on menu
+- `Price_level`: Prive level of restuarant
+- `Review_stats_all_average_score`: Average score for all reviews
+- `Review_stats_all_count`: Number of reviews for restaurant
