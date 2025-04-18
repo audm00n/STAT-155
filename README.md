@@ -2,7 +2,7 @@
 
 In this project, I plan to analyze a dataset totaling over 10,000 pizza places spread across the United States. 
 
-Include research question once data is compiled.
+I am interested in studying the potential association between location and average rating.
 
 ## Contents
 
