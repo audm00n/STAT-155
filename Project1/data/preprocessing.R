@@ -4,3 +4,5 @@ df <- duplicated(pizza$name) == FALSE
 pizza_new <- pizza[df,]
 
 save(pizza_new, file = "Project1/data/pizza_processed.Rdata")
+
+head(pizza_new)
