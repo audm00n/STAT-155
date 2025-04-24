@@ -1,0 +1,65 @@
+---
+title: "eda.qmd"
+format: html
+editor: visual
+---
+
+## Statement of Research Question & Analysis Objective
+
+**Research question:** **How do community review scores and all-review scores relate to price level and location across clusters?**
+
+My analysis will consist of the variables 'city', 'price_level', 'review_stats_community_average_score', and 'review_stats_all_average_score'. I am curious to find if there are potential clusters among expensive pizza places and their reviews, or if there are more groupings across cheaper places. Furthermore, I want to research if community reviews are more lenient than the average score of all reviews, potentially due to their loyalty to their community. I predict that there will be more clusters among lower priced restaurants because I expect reviewers to have lower expectations as opposed to pricier options. If possible, I would also like to explore the pizza place's location in relation to their reviews. I predict that the city of New York will have more critical reviews due to their density of pizza places and stricter standards from tourists and locals for the perfect slice.
+
+## Description of the Data
+
+Variables of interest:
+
+'city': City
+
+'price_level': Price rating (fewer \$ = cheaper, more $$$ = expensive)
+
+'review_stats_community_average_score': Community average score
+
+'review_stats_all_average_score': Average score of all reviewers (community, critic, Barstool)
+
+## Exploratory Data Analysis
+
+### Univariate
+
+![](images/Rplot01.png)
+
+Summary statistics (Price Level):
+
+-   Mean: 1.467
+-   Median 1.000
+-   Min: 0.000
+-   Max: 3.000
+
+Summary statistics (Community Average Score)
+
+-   Mean: 6.448
+
+-   Median: 7.229
+
+-   Min: 0.000
+
+-   Max: 10.000
+
+### Bivariate
+
+![](images/Rplot02.png)
+
+Summary statistics:
+
+-   Price level range: 0:3
+
+-   Community average score range: 1:8
+
+### Multivariate
+
+![](images/Rplot03.png)
+
+Summary statistics:
+
+-   Frequency range: 0:200
+-   Value range: 0:10
