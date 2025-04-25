@@ -1,4 +1,6 @@
 # load in libraries
+install.packages("FCPS")
+library(FCPS)
 library(tidyverse)
 library(naniar) # this is a nice package for visualizing missing data
 library(superheat)
@@ -16,26 +18,41 @@ pizza_new <- pizza[df,]
 
 # load in new dataset
 View(pizza_new)
-save(pizza_new, file = "Project1/data/pizza_processed.Rdata")
+save(pizza_new, file = "pizza_processed.Rdata")
 
 # number of values and names of variables
 names(pizza_new)
 nrow(pizza_new)
 
-# plot data
-pizza_new |>
-  select(price_level, review_stats_community_average_score) |>
-  pivot_longer(everything()) |>
-  ggplot() +
-  geom_histogram(aes(x = value), color = "white") +
-  facet_wrap(~name, scales = "free")
-
 # UNIVARIATE two histograms side-by-side comparing price level and CAS
+pizza_new |>
+  select(price_level) |>
+ # pivot_longer(everything()) |>
+  ggplot() +
+  geom_bar(aes(x = as.factor(price_level)), color = "white") +
+  coord_flip()#, binwidth = 1) #+
+#  facet_wrap(~name, scales = "free") +
+ # labs(x = "Price Level", y = "Frequency")
+
+plot(pizza_new$city)
+
 par(mfrow = c(1, 2))
-hist(pizza_new$price_level, main = "Histogram of Price Level", xlab = "Price",
-     ylab = "Frequency", col = "lightblue")
 hist(pizza_new$review_stats_community_average_score, main = "Histogram of Community Average Score", xlab = "Average Score",
      ylab = "Frequency", col = "lightgreen")
+hist(pizza_new$review_stats_all_average_score, main = "Histogram of All Average Score", xlab = "Average Score",
+     ylab = "Frequency", col = "lightpink")
+
+unique(pizza_new$city)
+
+plot(pizza_new$longitude, pizza_new$latitude)
+
+list_cities <- c("Bronx", "Brooklyn", "New York", "Saratoga Springs", "Staten Island") #Yonkers", "Buffalo", "Staten Island", "Saratoga Springs", "Gansevoort", "Hampton Bays", "Southampton", "East Meadow", "Elmont", "Howard Beach", "New Hyde Park", "Kew Gardens", "Middle Village", "Huntington", "New York City", "Mount Vernon")
+
+pizza_new |>
+filter(city %in% list_cities) |>
+  ggplot() +
+  geom_bar(aes(x = as.factor(city)), color = "white") +
+  coord_flip()
 
 # BIVARIATE plot CAS in relation to price
 plotmeans(pizza_new$review_stats_community_average_score ~ pizza_new$price_level, main = "Community Average Score in Relation to Price Level", xlab = "Price Level", ylab = "Community Average Score")
@@ -68,3 +85,25 @@ hist(pizza_barstool$review_stats_community_average_score ~ pizza_barstool$price_
 summary(pizza_new$review_stats_community_average_score)
 summary(pizza_new$price_level)
 summary(pizza_new$review_stats_community_average_score ~ pizza_new$price_level)
+
+
+# Install if you don't have these packages
+
+install.packages("maps")
+
+# Load libraries
+library(ggplot2)
+library(maps)
+
+# Get US map data
+us_map <- map_data("state")
+
+# Plot the map
+ggplot(us_map, aes(x = long, y = lat, group = group)) +
+ geom_polygon(fill = "white", color = "black") +
+  geom_point(data = pizza_new, aes(x = longitude, y = latitude, 
+                                   group = city), 
+             color = "red", size = 2) +
+  coord_fixed(1.3) +
+  theme_void() +
+  ggtitle("US Map with Cities")

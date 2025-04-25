@@ -16,7 +16,7 @@ Variables of interest:
 
 'city': City
 
-'price_level': Price rating (fewer \$ = cheaper, more $$$ = expensive)
+'price_level': Price rating (fewer \$ = cheaper, more \$\$\$ = expensive)
 
 'review_stats_community_average_score': Community average score
 
