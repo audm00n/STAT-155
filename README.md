@@ -1,8 +1,8 @@
 ### Welcome to my repository
 
-In this project, I plan to analyze a dataset totaling over 10,000 pizza places spread across the United States. 
+This project aims to explore the potential groups between pizza places within the United States. Variables such as location, rating, and price level can create natural groups amongst the restaurants depending on cluster characteristics. 
 
-I am interested in studying the potential association between location and average rating.
+The original dataset is from Jared Lander and Barstool Sports via Tyler Richards, and can be found under the tidytuesday GitHub repository. The preprocessed data contains 452 different pizza places across the United States. 
 
 ## Contents
 
