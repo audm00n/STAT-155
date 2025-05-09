@@ -8,3 +8,4 @@ I am interested in studying the potential association between location and avera
 
 - [Project 1](Project1): Data sources, data dictionary 
 - [Project 2](Project2): Research question, data description, exploratory data analysis
+- [Project 3](Project3): Description of project
