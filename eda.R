@@ -1,40 +1,12 @@
-# load in libraries
-install.packages("FCPS")
-library(FCPS)
-library(tidyverse)
-library(naniar) # this is a nice package for visualizing missing data
-library(superheat)
-library(patchwork)
-install.packages("gplots")
-library(gplots)
-library(psych)
-
-# read original dataset
-pizza <- read.csv(file= "pizza_barstool.csv")
-
-# preprocess the data - remove duplicates
-df <- duplicated(pizza$name) == FALSE
-pizza_new <- pizza[df,]
-
-# load in new dataset
-View(pizza_new)
-save(pizza_new, file = "pizza_processed.Rdata")
-
-# number of values and names of variables
-names(pizza_new)
-nrow(pizza_new)
-
 # UNIVARIATE two histograms side-by-side comparing price level and CAS
 pizza_new |>
   select(price_level) |>
- # pivot_longer(everything()) |>
+  # pivot_longer(everything()) |>
   ggplot() +
   geom_bar(aes(x = as.factor(price_level)), color = "white") +
   coord_flip()#, binwidth = 1) #+
 #  facet_wrap(~name, scales = "free") +
- # labs(x = "Price Level", y = "Frequency")
-
-plot(pizza_new$city)
+# labs(x = "Price Level", y = "Frequency")
 
 par(mfrow = c(1, 2))
 hist(pizza_new$review_stats_community_average_score, main = "Histogram of Community Average Score", xlab = "Average Score",
@@ -49,7 +21,7 @@ plot(pizza_new$longitude, pizza_new$latitude)
 list_cities <- c("Bronx", "Brooklyn", "New York", "Saratoga Springs", "Staten Island") #Yonkers", "Buffalo", "Staten Island", "Saratoga Springs", "Gansevoort", "Hampton Bays", "Southampton", "East Meadow", "Elmont", "Howard Beach", "New Hyde Park", "Kew Gardens", "Middle Village", "Huntington", "New York City", "Mount Vernon")
 
 pizza_new |>
-filter(city %in% list_cities) |>
+  filter(city %in% list_cities) |>
   ggplot() +
   geom_bar(aes(x = as.factor(city)), color = "white") +
   coord_flip()
@@ -75,11 +47,11 @@ legend("topright", legend = c("Price Level", "Community Average Score", "All Ave
        col = c("red", "blue", "green"), lty = 1)
 
 # plot histogram CAS in relation to price
-pizzanew.df <- data.frame(pizza_new$review_stats_community_average_score, pizza_new$price_level)
-rowMeans(pizzanew.df)
-alpha(pizzanew.df)
-hist(pizzanew.df)
-hist(pizza_barstool$review_stats_community_average_score ~ pizza_barstool$price_level)
+# pizzanew.df <- data.frame(pizza_new$review_stats_community_average_score, pizza_new$price_level)
+# rowMeans(pizzanew.df)
+# alpha(pizzanew.df)
+# hist(pizzanew.df)
+# hist(pizza_barstool$review_stats_community_average_score ~ pizza_barstool$price_level)
 
 # summary statistics
 summary(pizza_new$review_stats_community_average_score)
@@ -100,7 +72,7 @@ us_map <- map_data("state")
 
 # Plot the map
 ggplot(us_map, aes(x = long, y = lat, group = group)) +
- geom_polygon(fill = "white", color = "black") +
+  geom_polygon(fill = "white", color = "black") +
   geom_point(data = pizza_new, aes(x = longitude, y = latitude, 
                                    group = city), 
              color = "red", size = 2) +
