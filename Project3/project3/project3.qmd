@@ -1,0 +1,35 @@
+---
+title: "project3"
+---
+
+## Introduction & Data
+
+This project aims to explore the potential groups between pizza places within the United States. Variables such as location, rating, and price level can create natural groups amongst the restaurants depending on cluster characteristics.
+
+The original dataset is from Jared Lander and Barstool Sports via Tyler Richards, and can be found under the tidytuesday GitHub repository. The preprocessed data contains 452 different pizza places across the United States.
+
+### Key variables of interest: 
+
+-   'latitude' : Latitude coordinate of pizza place
+-   'longitude' : Longitude coordinate of pizza place
+-   'review_stats_all_average_score' : Average score
+-   'review_stats_community_average_score' : Community average score
+-   'price_level' : Price rating (fewer \$ = cheaper, more $$$ = expensive)
+
+### Research Question:
+
+What natural patterns emerge amongst pizza places and their locations in relation to ratings and price levels?
+
+### EDA
+
+In the initial EDA, bivariate analysis was done to see potential relationships between community average score (range1:8) in relation to price level (range 0:3). It was found that the community average score was the highest (6) at a price level of 2.
+
+## Methodology
+
+Clustering is the chosen method to analyze this data due to its ability to find hidden patterns amongst variables. This method of analysis can uncover natural groupings between pizza places and their ratings in relation to location.
+
+FCPS is the specific clustering package used to analyze this dataset. This package contains a wide variety of conventional clustering algorithms.
+
+## Results
+
+Still working, need to implement the model.
