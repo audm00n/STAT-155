@@ -16,7 +16,7 @@ pizza_new <- pizza[df,]
 
 # load in new dataset
 View(pizza_new)
-save(pizza_new, file = "pizza_processed.Rdata")
+write_csv(pizza_new, file = "Project1/data/pizza_processed.csv")
 
 # number of values and names of variables
 names(pizza_new)

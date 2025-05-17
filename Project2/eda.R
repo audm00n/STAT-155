@@ -1,3 +1,6 @@
+
+pizza_new <- read_csv("Project1/data/pizza_processed.csv")
+
 # UNIVARIATE two histograms side-by-side comparing price level and CAS
 pizza_new |>
   select(price_level) |>
