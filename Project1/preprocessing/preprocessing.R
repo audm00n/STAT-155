@@ -8,7 +8,7 @@ library(gplots)
 library(psych)
 
 # read original dataset
-pizza <- read.csv("Project1/data/pizza_barstool.csv")
+pizza <- read.csv("Project1/data/pizza_processed.csv")
 
 # preprocess the data - remove duplicates
 df <- duplicated(pizza$name) == FALSE
