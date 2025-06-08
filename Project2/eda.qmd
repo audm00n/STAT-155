@@ -108,7 +108,7 @@ ggplot(us_map, aes(x = long, y = lat, group = group)) +
 
 ### Univariate
 
-![](images/Rplot01.png)
+![](images/Univariate.png)
 
 Summary statistics (Price Level):
 
@@ -129,7 +129,7 @@ Summary statistics (Community Average Score)
 
 ### Bivariate
 
-![](images/Rplot02.png)
+![](images/Bivariate.png)
 
 Summary statistics:
 
@@ -139,7 +139,7 @@ Summary statistics:
 
 ### Multivariate
 
-![](images/Rplot03.png)
+![](images/Multivariate.png)
 
 Summary statistics:
 
