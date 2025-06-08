@@ -1,3 +1,4 @@
+# Run preprocessing.R in Project1 before proceeding
 
 pizza_new <- read_csv("Project1/data/pizza_processed.csv")
 
@@ -48,13 +49,6 @@ lines(x, y3, type = "l", col = "green")
 legend("topright", legend = c("Price Level", "Community Average Score", "All Average Score"),
        cex = 0.75,
        col = c("red", "blue", "green"), lty = 1)
-
-# plot histogram CAS in relation to price
-# pizzanew.df <- data.frame(pizza_new$review_stats_community_average_score, pizza_new$price_level)
-# rowMeans(pizzanew.df)
-# alpha(pizzanew.df)
-# hist(pizzanew.df)
-# hist(pizza_barstool$review_stats_community_average_score ~ pizza_barstool$price_level)
 
 # summary statistics
 summary(pizza_new$review_stats_community_average_score)

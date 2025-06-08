@@ -72,10 +72,23 @@ select(contains("lat"), contains("long"))
 
 head(ny_pizza) # 313 pizza places that are in NY
 
-df_ny <- data.frame(ny_pizza)
-df_ny <- na.omit(df_ny)
+# df_ny <- data.frame(ny_pizza)
+# df_ny <- na.omit(df_ny)
+# df_ny <- scale(df_ny)
+# head(df_ny)
+
+df_ny <- data.frame(ny_pizza$price_level, ny_pizza$review_stats_community_average_score)
+df_ny <- na.omit(df_ny) # removes missing values
 df_ny <- scale(df_ny)
 head(df_ny)
+
+k2 <- kmeans(df_ny, centers = 4, nstart = 25)
+str(k2)
+fviz_cluster(k2, data = df_ny)
+
+set.seed(123)
+fviz_nbclust(df_ny, kmeans, method = "wss")
+
 # not new york
 not_ny_pizza <- pizza_new %>%
   filter(!(latitude >= 40.5 & latitude <= 45 &
