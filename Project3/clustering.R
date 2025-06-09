@@ -11,6 +11,8 @@ library(factoextra) # clustering algorithms & visualization
 # read data
 pizza_new <- read.csv("Project1/data/pizza_processed.csv")
 
+
+# FIRST CLUSTER PLOT - PRICE & SCORE
 # create data frame
 df <- data.frame(pizza_new$price_level, pizza_new$review_stats_community_average_score)
 df <- na.omit(df) # removes missing values
@@ -35,69 +37,68 @@ fviz_cluster(k2, data = df)
 set.seed(123)
 fviz_nbclust(df, kmeans, method = "wss")
 
-# clustering location
-df_2 <- data.frame(pizza_new$price_level, pizza_new$latitude)
+
+# SECOND CLUSTER PLOT - PRICE & LONGITUDE
+# create new data frame
+df_2 <- data.frame(pizza_new$price_level, pizza_new$longitude)
 df_2 <- na.omit(df_2) # removes missing values
 df_2 <- scale(df_2)
 head(df_2)
 
-k2 <- kmeans(df_2, centers = 4, nstart = 25)
+# apply k-means
+k2 <- kmeans(df_2, centers = 3, nstart = 25)
 str(k2)
 fviz_cluster(k2, data = df_2)
 
-# EVERYTHING BELOW IS A WORK-IN-PROGRESS
-# new scale
-library(dplyr)
+# determining optimal clusters
+set.seed(123)
+fviz_nbclust(df_2, kmeans, method = "wss")
 
-# Combine raw data with cluster labels
-pizza_clustered <- pizza_new %>%
-  mutate(cluster = factor(cluster))  # make sure cluster is a factor
 
-# Compute means and medians
-cluster_summary <- pizza_clustered %>%
-  group_by(cluster) %>%
-  summarise(
-    mean_price_level = mean(price_level),
-    median_price_level = median(price_level),
-    mean_review_score = mean(review_stats_community_average_score),
-    median_review_score = median(review_stats_community_average_score),
-    count = n()
-  )
-
-# new york
+# THIRD CLUSTER PLOT - PRICE & SCORE IN NEW YORK
+# create a new filter
 ny_pizza <- pizza_new %>%
   filter(latitude >= 40.5, latitude <= 45,
          longitude >= -79.8, longitude <= -71.8)
-select(contains("lat"), contains("long"))
+# select(contains("lat"), contains("long"))
 
 head(ny_pizza) # 313 pizza places that are in NY
 
-# df_ny <- data.frame(ny_pizza)
-# df_ny <- na.omit(df_ny)
-# df_ny <- scale(df_ny)
-# head(df_ny)
-
+# create new data frame
 df_ny <- data.frame(ny_pizza$price_level, ny_pizza$review_stats_community_average_score)
 df_ny <- na.omit(df_ny) # removes missing values
 df_ny <- scale(df_ny)
 head(df_ny)
 
-k2 <- kmeans(df_ny, centers = 4, nstart = 25)
+# apply k-means
+k2 <- kmeans(df_ny, centers = 3, nstart = 25)
 str(k2)
 fviz_cluster(k2, data = df_ny)
 
+# determining optimal clusters
 set.seed(123)
 fviz_nbclust(df_ny, kmeans, method = "wss")
 
-# not new york
+
+# FOURTH CLUSTER PLOT - PRICE & SCORE OUTSIDE OF NEW YORK
+# create a new filter
 not_ny_pizza <- pizza_new %>%
   filter(!(latitude >= 40.5 & latitude <= 45 &
              longitude >= -79.8 & longitude <= -71.8))
 
 head(not_ny_pizza) #137 pizza places that are not in NY
 
-print(cluster_summary)
-# # analysis
-# Data = pizza_new$price_level
-# Review = pizza_new$review_stats_all_average_score
-# ClusterPlotMDS(Data, Review)
+# create new data frame
+df_nny <- data.frame(not_ny_pizza$price_level, not_ny_pizza$review_stats_community_average_score)
+df_nny <- na.omit(df_nny) # removes missing values
+df_nny <- scale(df_nny)
+head(df_nny)
+
+# apply k-means
+k2 <- kmeans(df_nny, centers = 3, nstart = 25)
+str(k2)
+fviz_cluster(k2, data = df_nny)
+
+# determining optimal clusters
+set.seed(123)
+fviz_nbclust(df_nny, kmeans, method = "wss")
